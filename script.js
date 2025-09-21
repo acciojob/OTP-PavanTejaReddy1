@@ -1,20 +1,21 @@
 const inputs = document.querySelectorAll(".code");
 
 inputs.forEach((input, i) => {
-	input.addEventListener("input", ()=>{
-		if(input.value.length == 1 && i < inputs.length-1) {
+	input.addEventListener("input", (e) => {
+		if (e.inputType === "insertText" && input.value.length === 1 && i < inputs.length - 1) {
 			inputs[i + 1].focus();
-		} 
+		}
 	});
-	
-	input.addEventListener("keydown", (e)=>{
-		if(e.key == "Backspace") {
-			if(input.value == "" && i > 0) {
+
+	input.addEventListener("keydown", (e) => {
+		if (e.key === "Backspace") {
+			if (input.value === "" && i > 0) {
 				inputs[i - 1].focus();
-				inputs[i - 1].value = "";
-			} else {
-				input.value = ""; 
 			}
 		}
-	})
-})
+	});
+	input.addEventListener("focus", () => {
+		input.select();
+	});
+
+});
