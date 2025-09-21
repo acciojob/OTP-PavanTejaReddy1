@@ -11,6 +11,9 @@ inputs.forEach((input, i) => {
 		if(e.key == "Backspace") {
 			if(input.value == "" && i > 0) {
 				inputs[i - 1].focus();
+				inputs[i - 1].value = "";
+			} else {
+				input.value = ""; 
 			}
 		}
 	})
