@@ -2,6 +2,7 @@ const inputs = document.querySelectorAll(".code");
 
 inputs.forEach((input, i) => {
 	input.addEventListener("input", (e) => {
+		e.preventDefault();
 		if (e.inputType === "insertText" && input.value.length === 1 && i < inputs.length - 1) {
 			inputs[i + 1].focus();
 		}
@@ -9,8 +10,13 @@ inputs.forEach((input, i) => {
 
 	input.addEventListener("keydown", (e) => {
 		if (e.key === "Backspace") {
-			if (input.value === "" && i > 0) {
-				inputs[i - 1].focus();
+			e.preventDefault();
+			if (input.value) {
+				input.value="";
+			} else {
+				if(inputs[i-1]){
+					inputs[i-1].focus();
+				}
 			}
 		}
 	});
